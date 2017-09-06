@@ -5,17 +5,17 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
 
+import CircleSelector from '../Selector/CircleSelector';
 import colors from '../../util/colors';
 
 const TopBar = ({ selected }) => {
   return (
     <div style={styles.container}>
       <div style={styles.profilePhotoGroup}>
-        <div style={selected ? styles.selected : null }>
+        <CircleSelector>
           <div style={styles.profilePhotoWrapper}>
-
           </div>
-        </div>
+        </CircleSelector>
       </div>
 
       <div style={styles.infoGroup}>
