@@ -9,25 +9,37 @@ import GamesList from '../Games/GamesList';
 import WidgetList from '../Widgets/WidgetList';
 import BottomBar from '../BottomBar/BottomBar';
 
-const Home = () => {
-  return (
-    <div style={styles.container}>
-      <TopBar />
-      <GamesList />
-      <WidgetList />
-      <BottomBar />
-    </div>
-  )
+import colors from '../../util/colors';
+
+class Home extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selected: null
+    }
+  }
+
+  render() {
+    return (
+      <div style={styles.container}>
+        <TopBar selected={true} />
+        <GamesList />
+        <WidgetList />
+        <BottomBar />
+      </div>
+    )
+  }
 }
 
 
-let scale = 0.7;
+let scale = 0.6;
 
 const styles = {
   // --------------------- CONTAINER
 
   container: {
-    backgroundColor: '#EBEBEB',
+    backgroundColor: colors.grey,
     width: 1280 * scale,
     height: 720 * scale,
 
