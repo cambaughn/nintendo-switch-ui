@@ -7,51 +7,27 @@ import Moment from 'react-moment';
 
 import colors from '../../util/colors';
 
-class TopBar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentTime: null,
-    }
-
-    this.getTime = this.getTime.bind(this)
-  }
-
-  componentDidMount() {
-    this.getTime();
-  }
-
-  getTime() {
-    let date = new Date();
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-
-    let displayDate = `${hours}:${minutes}`;
-
-    this.setState({ currentTime: date })
-  }
-
-  render() {
-    return (
-      <div style={styles.container}>
-        <div style={this.props.selected ? {...styles.profilePhotoSelector, ...styles.selected} : styles.profilePhotoSelector}>
+const TopBar = ({ selected }) => {
+  return (
+    <div style={styles.container}>
+      <div style={styles.profilePhotoGroup}>
+        <div style={selected ? styles.selected : null }>
           <div style={styles.profilePhotoWrapper}>
 
           </div>
         </div>
-
-        <div style={styles.infoGroup}>
-          <div style={styles.timeGroup}>
-            <Moment format={'h:mm'} interval={10000} style={styles.time} />
-            <Moment format={'A'} interval={10000} style={styles.ampm} />
-          </div>
-          <i className="fa fa-wifi" aria-hidden="true" style={styles.icon}></i>
-          <i className="fa fa-battery-three-quarters" aria-hidden="true" style={styles.icon}></i>
-        </div>
       </div>
-    )
-  }
+
+      <div style={styles.infoGroup}>
+        <div style={styles.timeGroup}>
+          <Moment format={'h:mm'} interval={10000} style={styles.time} />
+          <Moment format={'A'} interval={10000} style={styles.ampm} />
+        </div>
+        <i className="fa fa-wifi" aria-hidden="true" style={styles.icon}></i>
+        <i className="fa fa-battery-three-quarters" aria-hidden="true" style={styles.icon}></i>
+      </div>
+    </div>
+  )
 }
 
 
@@ -69,13 +45,14 @@ const styles = {
   },
 
   // --------------------- PROFILE PHOTO
-  profilePhotoSelector: {
+
+  profilePhotoGroup: {
     marginLeft: 40,
-    borderRadius: 100,
   },
 
   selected: {
-    border: `3px solid ${colors.lightblue}`,
+    borderRadius: 100,
+    border: `4px solid ${colors.lightblue}`,
   },
 
   profilePhotoWrapper: {
