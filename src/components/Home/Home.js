@@ -51,9 +51,17 @@ class Home extends Component {
 
   handleLeftRight(keyCode) {
     if (keyCode === 37) { // LEFT
-
+      if (this.state.selectedRow === 1) { // GAMES
+        this.setState({ selectedGame: this.state.selectedGame > 0 ? this.state.selectedGame - 1 : 0 });
+      } else if (this.state.selectedRow === 2) { // MENU
+        this.setState({ selectedMenuButton: this.state.selectedMenuButton > 0 ? this.state.selectedMenuButton - 1 : 0 });
+      }
     } else if (keyCode === 39) { // RIGHT
-      
+      if (this.state.selectedRow === 1) { // GAMES
+        this.setState({ selectedGame: this.state.selectedGame < this.state.games.length -1 ? this.state.selectedGame + 1 : 6 });
+      } else if (this.state.selectedRow === 2) { // MENU
+        this.setState({ selectedMenuButton: this.state.selectedMenuButton < 6 ? this.state.selectedMenuButton + 1 : 6 });
+      }
     }
   }
 
