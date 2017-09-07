@@ -17,8 +17,10 @@ class Home extends Component {
     super(props);
 
     this.state = {
-      selected: null,
       games: [],
+      selectedGame: 0,
+      selectedMenuButton: 0,
+      selectedRow: 1,
     }
   }
 
@@ -29,7 +31,7 @@ class Home extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <TopBar selected={true} />
+        <TopBar selected={this.state.selectedRow === 0} />
         <GamesList games={this.state.games} />
         <WidgetList />
         <BottomBar />

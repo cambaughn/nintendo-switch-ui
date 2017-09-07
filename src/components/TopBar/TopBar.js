@@ -12,7 +12,7 @@ const TopBar = ({ selected }) => {
   return (
     <div style={styles.container}>
       <div style={styles.profilePhotoGroup}>
-        <CircleSelector>
+        <CircleSelector selected={selected}>
           <div style={styles.profilePhotoWrapper}>
           </div>
         </CircleSelector>

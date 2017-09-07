@@ -13,15 +13,21 @@ class CircleSelector extends Component {
     this.state = {
       light: true,
     }
+    this.handleStyle = this.handleStyle.bind(this);
   }
 
   componentDidMount() {
     setInterval( () => this.setState({ light: !this.state.light}), 1500)
   }
 
+  handleStyle() {
+    return this.state.light ? styles.container : {...styles.container, ...styles.selected};
+  }
+
   render() {
+    let style = this.props.selected ? this.handleStyle() : {};
     return (
-      <div style={this.state.light ? styles.container : {...styles.container, ...styles.selected}}>
+      <div style={style}>
         {this.props.children}
       </div>
     )
