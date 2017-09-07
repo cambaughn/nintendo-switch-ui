@@ -9,6 +9,7 @@ import GamesList from '../Games/GamesList';
 import WidgetList from '../Widgets/WidgetList';
 import BottomBar from '../BottomBar/BottomBar';
 
+import { getGames } from '../../util/games';
 import colors from '../../util/colors';
 
 class Home extends Component {
@@ -16,15 +17,20 @@ class Home extends Component {
     super(props);
 
     this.state = {
-      selected: null
+      selected: null,
+      games: [],
     }
+  }
+
+  componentDidMount() {
+    getGames(games => this.setState({ games }));
   }
 
   render() {
     return (
       <div style={styles.container}>
         <TopBar selected={true} />
-        <GamesList />
+        <GamesList games={this.state.games} />
         <WidgetList />
         <BottomBar />
       </div>
@@ -47,6 +53,8 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
+
+    overflow: 'hidden',
   },
 }
 
