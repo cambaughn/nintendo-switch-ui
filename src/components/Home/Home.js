@@ -22,17 +22,50 @@ class Home extends Component {
       selectedMenuButton: 0,
       selectedRow: 1,
     }
+
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleUpDown = this.handleUpDown.bind(this);
+    this.handleLeftRight = this.handleLeftRight.bind(this);
   }
 
   componentDidMount() {
     getGames(games => this.setState({ games }));
+    document.addEventListener("keydown", this.handleKeyPress);
   }
+
+  handleKeyPress(e) {
+    if (e.keyCode === 38 || e.keyCode === 40) {
+      this.handleUpDown(e.keyCode);
+    } else if (e.keyCode === 37 || e.keyCode === 39) {
+      this.handleLeftRight(e.keyCode);
+    }
+  }
+
+  handleUpDown(keyCode) {
+    if (keyCode === 38) { // UP
+      this.setState({ selectedRow: this.state.selectedRow > 0 ? this.state.selectedRow - 1 : 0 })
+    } else if (keyCode === 40) { // DOWN
+      this.setState({ selectedRow: this.state.selectedRow < 3 ? this.state.selectedRow + 1 : 3 })
+    }
+  }
+
+  handleLeftRight(keyCode) {
+    if (keyCode === 37) { // LEFT
+
+    } else if (keyCode === 39) { // RIGHT
+      
+    }
+  }
+
 
   render() {
     return (
       <div style={styles.container}>
         <TopBar selected={this.state.selectedRow === 0} />
-        <GamesList games={this.state.games} />
+        <GamesList
+          games={this.state.games}
+          selectedGame={this.state.selectedGame}
+          selectedRow={this.state.selectedRow === 1} />
         <WidgetList />
         <BottomBar />
       </div>

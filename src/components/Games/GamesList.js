@@ -6,13 +6,12 @@ import React, { Component } from 'react';
 
 import GameCard from './GameCard';
 
-const GamesList = ({ games }) => {
+const GamesList = ({ games, selectedGame, selectedRow }) => {
   return (
     <div style={styles.container}>
       <div style={styles.slider}>
         { games.map((game, index) => (
-
-          <GameCard game={game} key={game.title} selected={index === 1} />
+          <GameCard game={game} key={game.title} selected={selectedRow && selectedGame === index} />
         ))}
       </div>
     </div>
